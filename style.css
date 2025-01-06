@@ -262,6 +262,7 @@ body {
 }
 
 .credits {
+  font-family: 'Roboto', sans-serif;
   margin-top: auto;
   margin-bottom: 10px;
   padding-top: 6px;
@@ -419,7 +420,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Russo One', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 3rem;
   background: linear-gradient(90deg, #ff0000, #ff7300, #ffeb00, #47ff00, #00ffee, #002bff, #ae00ff, #ff009c, #ff0000);
   background-size: 300%;
