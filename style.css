@@ -12,13 +12,14 @@ html {
   background-color: #000;
 }
 
+/* 
 body {
   overflow: hidden;
   color: rgba(255, 255, 255, 0.5);
   font-family: "Russo One", arial, sans-serif;
   line-height: 1.25;
   letter-spacing: 0.06em;
-}
+} */
 
 .hide {
   opacity: 0;
@@ -262,6 +263,7 @@ body {
 }
 
 .credits {
+  font-family: 'Roboto', sans-serif;
   margin-top: auto;
   margin-bottom: 10px;
   padding-top: 6px;
@@ -419,7 +421,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Russo One', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 3rem;
   background: linear-gradient(90deg, #ff0000, #ff7300, #ffeb00, #47ff00, #00ffee, #002bff, #ae00ff, #ff009c, #ff0000);
   background-size: 300%;
@@ -473,4 +475,126 @@ body {
   100% {
     background-position: 100%;
   }
+}
+
+/* Lời chúc */
+.message-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  border-radius: 0;
+  /* background: rgba(255, 243, 224, 0.8); */
+  box-shadow: none;
+  overflow: hidden;
+  font-size: 2vw;
+  /* Kích thước chữ linh hoạt theo viewport width */
+  line-height: 1.2;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(255, 105, 180, 1), -2px -2px 4px rgba(255, 105, 180, 1);
+    /* Viền chữ màu hồng đỏ */
+}
+
+/* Điều chỉnh kích cỡ chữ theo từng loại màn hình */
+@media (max-width: 1600px) {
+  .message-container {
+    font-size: 1.8vw;
+  }
+}
+
+@media (max-width: 1200px) {
+  .message-container {
+    font-size: 1.6vw;
+  }
+}
+
+@media (max-width: 992px) {
+  .message-container {
+    font-size: 1.4vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .message-container {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .message-container {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .message-container {
+    font-size: 1.1rem;
+  }
+}
+
+.message-container p {
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+  margin: 10px 0;
+}
+
+/* Hiệu ứng fadeIn từng dòng */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.message-container p:nth-child(1) {
+  animation-delay: 1s;
+}
+
+.message-container p:nth-child(2) {
+  animation-delay: 2s;
+}
+
+.message-container p:nth-child(3) {
+  animation-delay: 3s;
+}
+
+.message-container p:nth-child(4) {
+  animation-delay: 4s;
+}
+
+.message-container p:nth-child(5) {
+  animation-delay: 5s;
+}
+
+.message-container p:nth-child(6) {
+  animation-delay: 6s;
+}
+
+.message-container p:nth-child(7) {
+  animation-delay: 7s;
+}
+
+.message-container p:nth-child(8) {
+  animation-delay: 8s;
+}
+
+.message-container p:nth-child(9) {
+  animation-delay: 9s;
+}
+
+.message-container p:nth-child(10) {
+  animation-delay: 10s;
 }

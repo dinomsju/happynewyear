@@ -116,7 +116,7 @@ const store = {
   state: {
     // will be unpaused in init()
     paused: true,
-    soundEnabled: false,
+    soundEnabled: true,
     menuOpen: false,
     openHelpTopic: null,
     fullscreen: isFullscreen(),
@@ -2180,7 +2180,9 @@ const soundManager = {
         });
     });
 
-    return Promise.all(allFilePromises);
+    return Promise.all(allFilePromises).then(() => {
+      this.resumeAll(); // Bật âm thanh ngay khi tài nguyên được tải xong
+    });
   },
   
   pauseAll() {
@@ -2188,6 +2190,7 @@ const soundManager = {
   },
 
   resumeAll() {
+    console.log("resumeAll")
     // Play a sound with no volume for iOS. This 'unlocks' the audio context when the user first enables sound.
     this.playSound('lift', 0);
     // Chrome mobile requires interaction before starting audio context.
@@ -2199,6 +2202,12 @@ const soundManager = {
     setTimeout(() => {
       this.ctx.resume();
     }, 250);
+  }, 
+  
+  enableAudio() {
+    this.ctx.resume().then(() => {
+      console.log('Audio enabled');
+    });
   },
   
   // Private property used to throttle small burst sounds.
@@ -2293,3 +2302,33 @@ if (IS_HEADER) {
     );
   }, 0);
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.createElement('div');
+  overlay.style.position = 'fixed';
+  overlay.style.top = 0;
+  overlay.style.left = 0;
+  overlay.style.width = '100%';
+  overlay.style.height = '100%';
+  overlay.style.background = 'rgba(0, 0, 0, 0.5)';
+  overlay.style.display = 'flex';
+  overlay.style.justifyContent = 'center';
+  overlay.style.alignItems = 'flex-end'; // Đưa dòng chữ xuống gần cuối màn hình
+  overlay.style.zIndex = 1000;
+  overlay.style.color = '#fff';
+  overlay.style.fontSize = '16px';
+  overlay.style.cursor = 'pointer';
+  overlay.style.paddingBottom = '100px'; // Tạo khoảng cách giữa dòng chữ và mép dưới màn hình
+  overlay.style.marginBottom = '10px'; // Thêm margin dưới cho dòng chữ
+  overlay.textContent = 'Nhấn vào màn hình để bắn thêm pháo hoa';
+  overlay.style.fontFamily = 'Roboto';
+  
+
+  overlay.addEventListener('click', () => {
+    document.body.removeChild(overlay);
+    soundManager.enableAudio();
+    soundManager.playSound('lift');
+  });
+
+  document.body.appendChild(overlay);
+});
